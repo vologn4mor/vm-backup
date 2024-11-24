@@ -20,7 +20,7 @@ export class BackupService {
 
       Logger.log("Backup ended!");
     } catch (error) {
-      if (error instanceof Error) return console.log(error.message);
+      if (error instanceof Error) return Logger.log(error.message);
     }
   }
 }

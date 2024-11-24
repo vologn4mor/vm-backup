@@ -30,6 +30,7 @@ export default [
       ],
       "no-trailing-spaces": [2, { skipBlankLines: true }],
       camelcase: "off",
+      "no-console": "error",
     },
   },
 ];
