@@ -4,6 +4,7 @@
 1. `npm install rimraf --global`
 2. `npm install ncp --global`
 3. `cp .env.example .env`
+4. `npm i`
 
 # to run project:
 
