@@ -1,0 +1,29 @@
+{
+  "name": "vm-backup",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc && ncp .env dist/.env",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js \"",
+    "watch": "tsc-watch --project . --outDir ./dist --onSuccess \"nodemon ./dist/index.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@types/node": "^22.9.0",
+    "@types/node-cron": "^3.0.11",
+    "concurrently": "^9.1.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0",
+    "node-cron": "^3.0.3",
+    "nodemon": "^3.1.7",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.15.0"
+  }
+}
