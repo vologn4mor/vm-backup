@@ -7,13 +7,13 @@ const execute = util.promisify(exec);
 export class BackupService {
   public async start(): Promise<void> {
     try {
-      Logger.log("Backup started!");
+      await Logger.logWithChannel("Backup started!");
 
       await this.shutdownVM();
       await this.backupVm();
       await this.startupVm();
 
-      Logger.log("Backup ended!");
+      await Logger.logWithChannel("Backup ended!");
     } catch (error) {
       if (error instanceof Error) return Logger.log(error.message);
     }
@@ -33,14 +33,20 @@ export class BackupService {
   }
 
   private async shutdownVM(): Promise<void> {
-    await this.runExecute(`${process.env.V_BOX_MANAGE_PATH} controlvm ${process.env.VM_NAME} poweroff`);
+    await this.runExecute(
+      `${process.env.V_BOX_MANAGE_PATH} controlvm ${process.env.VM_NAME} poweroff`,
+    );
   }
 
   private async backupVm(): Promise<void> {
-    await this.runExecute(`${process.env.ARCHIVER_PATH} ${process.env.VM_FOLDER_PATH} ${process.env.BACKUP_PATH} ${process.env.BACKUP_ARGS}`);
+    await this.runExecute(
+      `${process.env.ARCHIVER_PATH} ${process.env.VM_FOLDER_PATH} ${process.env.BACKUP_PATH} ${process.env.BACKUP_ARGS}`,
+    );
   }
 
   private async startupVm(): Promise<void> {
-    await this.runExecute(`${process.env.V_BOX_MANAGE_PATH} startvm ${process.env.VM_NAME} --type headless`);
+    await this.runExecute(
+      `${process.env.V_BOX_MANAGE_PATH} startvm ${process.env.VM_NAME} --type headless`,
+    );
   }
 }
