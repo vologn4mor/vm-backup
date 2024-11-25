@@ -1,5 +1,5 @@
 import DateHelper from "./DateHelper";
-import TelegramService from "../services/TelegramService";
+import TelegramService, { message } from "../services/TelegramService";
 
 class Logger {
   public log(message: unknown): void {
@@ -7,9 +7,12 @@ class Logger {
     console.log(`[${DateHelper.getTimeHMS()}] ${message}`);
   }
 
-  public async logWithChannel(message: string): Promise<void> {
+  public async logWithChannel(
+    message: string,
+    type: message = "success",
+  ): Promise<void> {
     this.log(message);
-    await TelegramService.sendMessageToChannel(message);
+    await TelegramService.sendMessageToChannel(message, type);
   }
 }
 

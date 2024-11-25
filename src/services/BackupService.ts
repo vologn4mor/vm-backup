@@ -15,7 +15,8 @@ export class BackupService {
 
       await Logger.logWithChannel("Backup ended!");
     } catch (error) {
-      if (error instanceof Error) return Logger.log(error.message);
+      if (error instanceof Error)
+        return Logger.logWithChannel(error.message, "error");
     }
   }
 

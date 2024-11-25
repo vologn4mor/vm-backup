@@ -1,7 +1,18 @@
 import Logger from "../helpers/Logger";
 
+export enum messagesTypesList {
+  success = "🟢",
+  warning = "🟠",
+  error = "🔴",
+}
+
+export type message = "success" | "warning" | "error";
+
 class TelegramService {
-  public async sendMessageToChannel(message: string): Promise<void> {
+  public async sendMessageToChannel(
+    message: string,
+    type: message,
+  ): Promise<void> {
     if (!process.env.BOT_TOKEN || process.env.CHANNEL_ID) {
       new Error("Need to add BOT_TOKEN or CHANNEL_ID to dot env");
     }
@@ -16,7 +27,7 @@ class TelegramService {
         },
         body: JSON.stringify({
           chat_id: process.env.CHANNEL_ID,
-          text: `✅${message}`,
+          text: `${messagesTypesList[type]} ${message}`,
           parse_mode: "HTML",
         }),
       });
